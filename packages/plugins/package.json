@@ -1,0 +1,25 @@
+{
+  "name": "@repo/plugins",
+  "description": "Plugins module",
+  "author": "Dang Vu",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "plugins"
+  ],
+  "dependencies": {
+    "@repo/hooks": "*",
+    "@repo/constants": "*"
+  },
+  "engines": {
+    "node": ">=18.12.0",
+    "npm": ">=8.19.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "ISC"
+}
