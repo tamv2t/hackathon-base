@@ -1,57 +1,51 @@
-// /**
-//  * Internal dependencies
-//  */
-// import type { Coin98Plugin } from "../../api";
+import React from "react";
+import { createContext, useContext } from "react";
+import type { Coin98Plugin } from "../../api";
 
-// export interface PluginContext {
-//   name: null | Coin98Plugin["name"];
-//   icon: null | Coin98Plugin["image"];
-// }
+// Define the interface for the context
+export interface PluginContext {
+  name: null | Coin98Plugin["name"];
+  image: null | Coin98Plugin["image"];
+}
 
-// const Context = createContext<PluginContext>({
-//   name: null,
-//   icon: null,
-// });
+// Initialize context with default values
+const Context = createContext<PluginContext>({
+  name: null,
+  image: null,
+});
 
-// export const PluginContextProvider = Context.Provider;
+// Provider for supplying the context
+export const PluginContextProvider = Context.Provider;
 
-// /**
-//  * A hook that returns the plugin context.
-//  *
-//  * @return {PluginContext} Plugin context
-//  */
-// export function usePluginContext() {
-//   return useContext(Context);
-// }
+/**
+ * Hook to access the plugin context.
+ *
+ * @return {PluginContext} Plugin context
+ */
+export function usePluginContext(): PluginContext {
+  return useContext(Context);
+}
 
-// /**
-//  * A Higher Order Component used to inject Plugin context to the
-//  * wrapped component.
-//  *
-//  * @deprecated 6.8.0 Use `usePluginContext` hook instead.
-//  *
-//  * @param  mapContextToProps Function called on every context change,
-//  *                           expected to return object of props to
-//  *                           merge with the component's own props.
-//  *
-//  * @return {Component} Enhanced component with injected context as props.
-//  */
-// export const withPluginContext = (
-//   mapContextToProps: <T>(context: PluginContext, props: T) => T & PluginContext
-// ) =>
-//   createHigherOrderComponent((OriginalComponent) => {
-//     deprecated("wp.plugins.withPluginContext", {
-//       since: "6.8.0",
-//       alternative: "wp.plugins.usePluginContext",
-//     });
-//     return (props) => (
-//       <Context.Consumer>
-//         {(context) => (
-//           <OriginalComponent
-//             {...props}
-//             {...mapContextToProps(context, props)}
-//           />
-//         )}
-//       </Context.Consumer>
-//     );
-//   }, "withPluginContext");
+/**
+ * Higher-Order Component (HOC) to inject context into a component.
+ *
+ * @param mapContextToProps Function that maps context to props and merges with the component's props.
+ *
+ * @return {React.ComponentType} Enhanced component with context as props.
+ */
+export const withPluginContext = <T extends object>(
+  mapContextToProps: (context: PluginContext, props: T) => T & PluginContext
+) => {
+  return (OriginalComponent: React.ComponentType<T>) => {
+    return (props: T) => (
+      <Context.Consumer>
+        {(context) => (
+          <OriginalComponent
+            {...props}
+            {...mapContextToProps(context, props)} // Merge context and props into the component
+          />
+        )}
+      </Context.Consumer>
+    );
+  };
+};

@@ -31,6 +31,7 @@ export default function Page(): JSX.Element {
       actions,
       doingAction: doingAction("deprecated"),
       didAction: didAction("deprecated"),
+      currentAction: currentAction("deprecated"),
     });
   };
   return (

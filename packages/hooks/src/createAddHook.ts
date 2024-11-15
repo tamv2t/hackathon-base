@@ -59,9 +59,6 @@ function createAddHook(hooks: Hooks, storeKey: StoreKey): AddHook {
     priority: number = 10
   ) {
     const hooksStore = hooks[storeKey];
-    if (!hooksStore.__current) {
-      hooksStore.__current = [];
-    }
 
     if (!validateHookName(hookName)) {
       return;
