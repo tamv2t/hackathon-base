@@ -93,7 +93,7 @@ export function registerPlugin(
       return null;
     }
   }
-  const pluginData = PLUGINS.find((plugin) => plugin.function === name);
+  const pluginData = PLUGINS.find((plugin) => plugin.name === name);
   plugins[name] = {
     name,
     image: pluginData?.image ?? "",
@@ -101,7 +101,7 @@ export function registerPlugin(
   };
 
   doAction("plugins.pluginRegistered", settings, name);
-
+  // addPlugin();
   return settings;
 }
 

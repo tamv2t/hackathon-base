@@ -1,2 +1,3 @@
 export { PLUGINS } from "./plugins";
-export { Icons } from "./icons";
+export { ICONS } from "./icons";
+export { type TPluginData } from "./types";

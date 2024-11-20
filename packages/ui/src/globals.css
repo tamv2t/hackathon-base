@@ -2,68 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import "@coin98t/wallet-adapter-react-ui/styles.css"; */
+
+@import "./icons.css";
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --background: #fafafa;
+    --backgroundChild: #fff;
+    --backgroundInput: #f5f5f5;
+    --backgroundInputHover: #eaeaea;
+    --backgroundActive: #242424;
+    --backgroundModal: rgba(0, 0, 0, 0.6);
+    --backgroundWrapper: #f3f3f3;
+    --backgroundInputSpecial: #f5f5f5;
+    --backgroundLoading: #fafafa;
+    --textSubSwap: #303030;
+    --textContentSpecial: #969696;
+    --textTitleSpecial: #1b1b1b;
+    --textTitle: #1b1b1b;
+    --textTitleReverse: #fff;
+    --textTitleActive: #fff;
+    --textContent: #777;
+    --textButtonLight: #141414;
+    --textContentPopup: #605e5c;
+    --textSub: #bbb;
+    --textDisable: #494949;
+    --textLink: #cda439;
+    --textLinkHover: #ddb54c;
+    --textPlaceholder: #bbb;
+    --dividerColor: #f5f5f5;
+    --dividerColorBgInput: #bbb;
+    --dividerColorDefault: #ededed;
+    --primaryButton: #cda439;
+    --primaryButtonHover: #ddb54c;
+    --disableButton: #494949;
+    --error: #ce6149;
+    --warning: #ffda58;
+    --success: #77bd75;
+    --info: #4d94d7;
+    --errorHover: #d4745e;
+    --warningHover: #ffe070;
+    --successHover: #85c383;
+    --infoHover: #69a5dd;
+    --errorBackground: #f6e3df;
+    --warningBackground: #fff6d6;
+    --successBackground: #e4f2e3;
+    --infoBackground: #deebf7;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: #141414;
+    --backgroundChild: #1a1a1a;
+    --backgroundInput: #242424;
+    --backgroundInputHover: #363636;
+    --backgroundActive: #f5f5f5;
+    --backgroundModal: hsla(0, 0%, 7%, 0.8);
+    --backgroundWrapper: #141414;
+    --backgroundInputSpecial: #1d1d1d;
+    --backgroundLoading: #181818;
+    --textSubSwap: #303030;
+    --textContentSpecial: #969696;
+    --textTitle: #fff;
+    --textTitleReverse: #1b1b1b;
+    --textTitleActive: #1b1b1b;
+    --textContent: #bbb;
+    --textContentPopup: #bbb;
+    --textButtonLight: #bbb;
+    --textSub: #777;
+    --textDisable: #494949;
+    --textLink: #cda439;
+    --textLinkHover: #ddb54c;
+    --textPlaceholder: #464646;
+    --dividerColor: #363636;
+    --dividerColorBgInput: #363636;
+    --dividerColorDefault: #212121;
+    --primaryButton: #cda439;
+    --primaryButtonHover: #ddb54c;
+    --disableButton: #494949;
+    --error: #b94f3d;
+    --warning: #debc41;
+    --success: #60a05f;
+    --info: #4a86be;
+    --errorHover: #c25a47;
+    --warningHover: #e0c152;
+    --successHover: #74ab73;
+    --infoHover: #5a91c4;
+    --errorBackground: #2e140f;
+    --warningBackground: #342b09;
+    --successBackground: #172617;
+    --infoBackground: #101f2d;
   }
 }
-
-@layer base {
-  * {
-    @apply border-border;
+@layer components {
+  .container-miniswap {
+    @apply flex items-center border rounded-lg px-4 py-6 md:py-3  bg-backgroundInput border-transparent;
   }
-  body {
-    @apply bg-background text-foreground;
+  .all-center {
+    @apply flex justify-center items-center;
+  }
+  .icon-cursor {
+    @apply text-[24px] cursor-pointer hover:text-textLinkHover;
+  }
+  .absolute-center {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
   }
 }

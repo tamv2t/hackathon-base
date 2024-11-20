@@ -1,12 +1,12 @@
+"use client";
 import memoize from "memize";
 import { PluginContextProvider } from "../plugin-context";
 import { PluginErrorBoundary } from "../plugin-error-boundary";
-import { Coin98Plugin, getPlugins } from "../../api";
 import type { PluginContext } from "../plugin-context";
 import { useMemo, useSyncExternalStore } from "react";
 import { addAction, removeAction } from "@repo/hooks";
 import { shallowEqual } from "shallow-equal";
-import React from "react";
+import { Coin98Plugin, usePluginManager } from "../../hooks/usePluginManager";
 
 const getPluginContext = memoize(
   (image: PluginContext["image"], name: PluginContext["name"]) => ({
@@ -22,6 +22,8 @@ function PluginArea({
   scope?: string;
   onError?: (name: Coin98Plugin["name"], error: Error) => void;
 }) {
+  const { getPlugins } = usePluginManager();
+
   const store = useMemo(() => {
     let lastValue: Coin98Plugin[] = [];
 
@@ -70,16 +72,25 @@ function PluginArea({
     store.getValue,
     store.getValue
   );
+  console.log({
+    plugins,
+    store,
+  });
 
   return (
-    <div style={{ display: "none" }}>
-      {plugins.map(({ image, name, render: Plugin }) => (
-        <PluginContextProvider key={name} value={getPluginContext(image, name)}>
-          <PluginErrorBoundary name={name} onError={onError}>
-            <Plugin />
-          </PluginErrorBoundary>
-        </PluginContextProvider>
-      ))}
+    <div>
+      {plugins.map(({ image, name, render: Plugin }) => {
+        return (
+          <PluginContextProvider
+            key={name}
+            value={getPluginContext(image, name)}
+          >
+            <PluginErrorBoundary name={name} onError={onError}>
+              <Plugin />
+            </PluginErrorBoundary>
+          </PluginContextProvider>
+        );
+      })}
     </div>
   );
 }

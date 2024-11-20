@@ -20,5 +20,5 @@ module.exports = {
       "coin-images.coingecko.com",
     ],
   },
-  transpilePackages: ["@repo/ui"],
+  transpilePackages: ["@repo/ui","@repo/plugins"],
 };
