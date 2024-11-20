@@ -1,11 +1,12 @@
-import { TPluginData } from "@repo/constants";
+"use client";
+import { PLUGINS, TPluginData } from "@repo/constants";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type PluginState = {
   pluginList: TPluginData[];
   addPlugin: (item: TPluginData) => void;
-  removePlugin: (name: string | number) => void;
+  removePlugin: (name: string) => void;
   reset: () => void;
 };
 
@@ -34,6 +35,17 @@ const usePluginStore = create<PluginState>()(
     }),
     {
       name: "plugin-storage",
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.pluginList = state.pluginList.map((plugin) => {
+            const originalPlugin = PLUGINS.find((p) => p.name === plugin.name);
+            return {
+              ...plugin,
+              render: originalPlugin?.render || (() => null),
+            };
+          });
+        }
+      },
     }
   )
 );

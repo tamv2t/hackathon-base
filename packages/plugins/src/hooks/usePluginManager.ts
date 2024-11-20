@@ -2,7 +2,7 @@
 import { PLUGINS } from "@repo/constants";
 import { applyFilters, doAction } from "@repo/hooks";
 import { usePluginStore, useShallow } from "@repo/store";
-import { ComponentType, useCallback } from "react";
+import { ComponentType } from "react";
 export interface Coin98Plugin {
   /**
    * A string identifying the plugin. Must be unique across all registered plugins.
@@ -44,7 +44,6 @@ export const usePluginManager = () => {
   const pluginList = usePluginStore(useShallow((state) => state.pluginList));
   const addPlugin = usePluginStore((state) => state.addPlugin);
   const removePlugin = usePluginStore((state) => state.removePlugin);
-  console.log(pluginList);
 
   function registerPlugin(
     name: string,
@@ -108,21 +107,20 @@ export const usePluginManager = () => {
     return settings;
   }
 
-  const unregisterPlugin = useCallback(
-    (name: string) => {
-      if (!plugins[name]) {
-        console.error('Plugin "' + name + '" is not registered.');
-        return;
-      }
-      const oldPlugin = plugins[name];
-      delete plugins[name];
+  const unregisterPlugin = (name: string): Coin98Plugin | undefined => {
+    // TODO:check Plugin
+    // if (!plugins[name]) {
+    //   console.error('Plugin "' + name + '" is not registered.');
+    //   return;
+    // }
 
-      doAction("plugins.pluginUnregistered", oldPlugin, name);
+    const oldPlugin = plugins[name];
+    delete plugins[name];
 
-      return oldPlugin;
-    },
-    [removePlugin]
-  );
+    doAction("plugins.pluginUnregistered", oldPlugin, name);
+    removePlugin(name);
+    return oldPlugin;
+  };
   function getPlugin(name: string): Coin98Plugin | undefined {
     return plugins[name];
   }
@@ -136,8 +134,12 @@ export const usePluginManager = () => {
    * @return The list of plugins without a scope or for a given scope.
    */
   function getPlugins(scope?: string): Coin98Plugin[] {
-    console.log(123, pluginList);
+    const isHydrated = usePluginStore.persist.hasHydrated();
 
+    if (!isHydrated) {
+      console.warn("Plugins have not been hydrated yet.");
+      return [];
+    }
     return Object.values(pluginList).filter((plugin) => plugin.scope === scope);
   }
   return { registerPlugin, unregisterPlugin, getPlugin, getPlugins };

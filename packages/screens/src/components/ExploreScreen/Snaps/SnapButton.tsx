@@ -3,20 +3,28 @@ import { TPluginData } from "@repo/constants";
 import { Button } from "@repo/ui/components/ui/button";
 import { toast } from "sonner";
 import { usePluginManager } from "@repo/plugins";
+import { useMemo } from "react";
+import { usePluginStore, useShallow } from "@repo/store";
 const SnapButton = ({ snap, ...props }: { snap: TPluginData }) => {
-  const { registerPlugin } = usePluginManager();
-  //   const isInstalled = useMemo(
-  //     () => !!snapList.find((i: TSnapData) => i.id === snap?.id),
-  //     [snapList, snap]
-  //   );
+  const { registerPlugin, unregisterPlugin } = usePluginManager();
+  const pluginList = usePluginStore(useShallow((state) => state.pluginList));
+
+  const isInstalled = useMemo(
+    () => !!pluginList.find((i: TPluginData) => i.name === snap?.name),
+    [pluginList, snap]
+  );
   const handleInstallSnap = () => {
-    registerPlugin(snap.name, {
-      image: snap.image,
-      render: snap.render,
-      scope: snap.scope,
-    });
-    toast.success("Add snap successed!");
-    console.log(snap);
+    if (isInstalled) {
+      unregisterPlugin(snap.name);
+      toast.success("Remove snap successed!");
+    } else {
+      registerPlugin(snap.name, {
+        image: snap.image,
+        render: snap.render,
+        scope: snap.scope,
+      });
+      toast.success("Add snap successed!");
+    }
   };
 
   return (
@@ -27,8 +35,7 @@ const SnapButton = ({ snap, ...props }: { snap: TPluginData }) => {
       {...props}
       onClick={handleInstallSnap}
     >
-      {/* {isInstalled ? "Remove" : "Install"} */}
-      Install
+      {isInstalled ? "Remove" : "Install"}
     </Button>
   );
 };

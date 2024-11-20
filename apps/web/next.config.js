@@ -18,6 +18,7 @@ module.exports = {
       "coin98.s3.ap-southeast-1.amazonaws",
       "coin98.s3.ap-southeast-1.amazonaws.com",
       "coin-images.coingecko.com",
+      "coin98.s3-ap-southeast-1.amazonaws.com"
     ],
   },
   transpilePackages: ["@repo/ui","@repo/plugins"],

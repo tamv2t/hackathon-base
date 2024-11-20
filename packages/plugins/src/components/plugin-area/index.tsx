@@ -76,7 +76,19 @@ function PluginArea({
     plugins,
     store,
   });
-
+  if (plugins.length === 0) {
+    return (
+      <div className="h-[300px]">
+        <img
+          src={"https://snapshot.coin98.com/bgUpcoming.0501f83.svg"}
+          width={1000}
+          height={300}
+          alt="empty"
+          className="h-full w-full"
+        />
+      </div>
+    );
+  }
   return (
     <div>
       {plugins.map(({ image, name, render: Plugin }) => {

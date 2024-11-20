@@ -61,7 +61,7 @@ export class _Hooks implements Hooks {
     this.hasFilter = createHasHook(this, "filters");
     this.removeAllActions = createRemoveHook(this, "actions", true);
     this.removeAllFilters = createRemoveHook(this, "filters", true);
-    this.doAction = createRunHook(this, "actions", false, false);
+    this.doAction = createRunHook(this, "actions", true, false);
     this.doActionAsync = createRunHook(this, "actions", false, true);
     this.applyFilters = createRunHook(this, "filters", true, false);
     this.applyFiltersAsync = createRunHook(this, "filters", true, true);

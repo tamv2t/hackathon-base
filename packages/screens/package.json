@@ -23,10 +23,10 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
+    "@repo/plugins": "*",
     "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
     "@repo/ui": "*",
-    "@repo/plugins": "*",
     "@types/react": "^18.2.61",
     "autoprefixer": "^10.4.18",
     "postcss": "^8.4.35",
@@ -38,7 +38,9 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.456.0",
+    "react-hook-form": "^7.53.2",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   }
 }

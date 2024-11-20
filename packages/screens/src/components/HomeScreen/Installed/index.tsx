@@ -52,27 +52,7 @@ const CardSnap: React.FC<CardSnapProps> = ({ item }) => {
     </div>
   );
 };
-const CardPlugin: React.FC<CardPluginProps> = ({ item }) => {
-  return (
-    <div className="p-2">
-      <div className="min-h-[11rem] bg-backgroundModal all-center mb-3 relative overflow-hidden rounded-t-xl">
-        <Icon name={item.icon} className="text-3xl" />
-      </div>
-      <div className="flex justify-between items-center">
-        <div className="flex gap-x-1 items-center">
-          <Icon name={item.icon} className="text-xl" />
-          <div className="flex-1">
-            <h3 className="font-semibold line-clamp-1">{item.name}</h3>
-            <p className="line-clamp-1 text-xs">{item.description}</p>
-          </div>
-        </div>
-        <Button className="rounded-xl" size={"sm"}>
-          View
-        </Button>
-      </div>
-    </div>
-  );
-};
+
 const Installed = () => {
   const snapList: any = [];
   const renderInstalled = () => {
@@ -94,27 +74,11 @@ const Installed = () => {
         {snapList.map((item: any) => (
           <CardSnap item={item} key={item.id} />
         ))}
-        {/* {plugins.map((item) => (
-          <CardPlugin item={item} key={item.id} />
-        ))} */}
       </div>
     );
   };
 
-  return (
-    <section>
-      <div className="flex justify-between">
-        <h2 className="text-2xl font-bold">Installed</h2>
-        <Link
-          href={"/explore"}
-          className="text-textLink hover:underline hover:decoration-2"
-        >
-          Explore All Snaps
-        </Link>
-      </div>
-      {renderInstalled()}
-    </section>
-  );
+  return <section>{renderInstalled()}</section>;
 };
 
 export default Installed;

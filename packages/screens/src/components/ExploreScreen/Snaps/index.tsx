@@ -36,20 +36,9 @@ export const SnapItem: React.FC<SnapItemProps> = ({ item }) => {
   );
 };
 const Snaps = () => {
-  const checkStatusFilter = () => {
-    console.log({
-      hasFilter: hasFilter("plugins.pluginRegistered"),
-      filters,
-      doingFilter: doingFilter("plugins.pluginRegistered"),
-      didFilter: didFilter("plugins.pluginRegistered"),
-      currentFilter: currentFilter("plugins.pluginRegistered"),
-    });
-  };
   return (
     <div className="pb-6">
       <h2 className="text-2xl font-bold py-6">Explore Snaps</h2>
-      <button onClick={checkStatusFilter}>TEST</button>
-
       <div className="grid grid-cols-3 gap-4">
         {PLUGINS.map((item) => (
           <SnapItem item={item} key={item.name} />
