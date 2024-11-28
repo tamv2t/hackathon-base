@@ -3,13 +3,6 @@ import { PLUGINS, TPluginData } from "@repo/constants";
 import Image from "next/image";
 import React from "react";
 import SnapButton from "./SnapButton";
-import {
-  currentFilter,
-  didFilter,
-  doingFilter,
-  filters,
-  hasFilter,
-} from "@repo/hooks";
 interface SnapItemProps {
   item: TPluginData;
 }

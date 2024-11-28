@@ -1,7 +1,7 @@
 {
   "name": "@repo/store",
   "description": "Storage",
-  "author": "Dang Vu",
+  "author": "DangVu137",
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
@@ -11,8 +11,6 @@
     "plugins"
   ],
   "dependencies": {
-    "@repo/constants": "*",
-    "@repo/hooks": "*",
     "zustand": "^5.0.1"
   },
   "engines": {
@@ -22,5 +20,6 @@
   "publishConfig": {
     "access": "public"
   },
+  "@repo/constants": "*",
   "license": "ISC"
 }

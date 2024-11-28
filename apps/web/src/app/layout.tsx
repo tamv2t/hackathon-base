@@ -1,6 +1,7 @@
 import "@repo/ui/globals.css";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
+import Provider from "../context/Provider";
 import Layout from "../layouts";
 const bricolage_grotesque = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={`${bricolage_grotesque.className} antialiased`}>
-        <Layout>{children}</Layout>
+        <Provider>
+          <Layout>{children}</Layout>
+        </Provider>
       </body>
     </html>
   );

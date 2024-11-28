@@ -6,6 +6,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "dependencies": {
+    "@test/pluga": "*",
+    "@test/plugb": "*",
+    "@test/plug_feature": "*"
+  },
   "author": "",
   "license": "ISC",
   "description": ""

@@ -1,11 +1,17 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
+    "lib": ["dom", "es6"],
+    "resolveJsonModule": true,
     "baseUrl": ".",
+    "declaration": false,
+    "declarationMap": false,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
     "paths": {
-      "@repo/ui/*": ["./src/*"]
+      "@repo/ui/*": ["./index.tsx"]
     }
   },
-  "include": ["src"],
+  "extends": "@repo/typescript-config/react-library.json",
+  "include": ["./**/*.ts", "./**/*.tsx", "./**/*.svg", "../../apps/**/*"],
   "exclude": ["dist", "build", "node_modules"]
 }

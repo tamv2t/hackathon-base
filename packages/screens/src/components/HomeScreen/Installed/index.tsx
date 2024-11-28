@@ -1,10 +1,8 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { Button } from "@repo/ui/components/ui/button";
-import { Icon } from "@repo/ui/components/ui/icon";
 import { TPluginData } from "@repo/constants";
+import { Button } from "@repo/ui/components/ui/button";
+import Image from "next/image";
+import React from "react";
 
 interface CardSnapProps {
   item: TPluginData;

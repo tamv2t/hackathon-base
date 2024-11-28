@@ -1,53 +1,49 @@
-"use client";
-import { PLUGINS, TPluginData } from "@repo/constants";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { TPluginData } from "@repo/constants";
 
-type PluginState = {
-  pluginList: TPluginData[];
-  addPlugin: (item: TPluginData) => void;
+interface PluginStore {
+  plugins: TPluginData[];
+  addPlugin: (plugin: TPluginData) => void;
   removePlugin: (name: string) => void;
-  reset: () => void;
-};
+  updatePlugin: (name: string, data: Partial<TPluginData>) => void;
+  togglePluginStatus: (name: string) => void;
+}
 
-const usePluginStore = create<PluginState>()(
+export const usePluginStore = create<PluginStore>()(
   persist(
     (set) => ({
-      pluginList: [],
+      plugins: [],
 
-      addPlugin: (item) =>
+      addPlugin: (plugin: TPluginData) =>
+        set((state) => ({ plugins: [...state.plugins, plugin] })),
+
+      removePlugin: (name: string) =>
         set((state) => ({
-          pluginList: [
-            ...state.pluginList.filter((i) => i.name !== item.name),
-            item,
-          ],
+          plugins: state.plugins.filter((plugin) => plugin.name !== name),
         })),
 
-      removePlugin: (name) =>
+      updatePlugin: (name: string, data: Partial<TPluginData>) =>
         set((state) => ({
-          pluginList: state.pluginList.filter((i) => i.name !== name),
+          plugins: state.plugins.map((plugin) =>
+            plugin.name === name ? { ...plugin, ...data } : plugin
+          ),
         })),
 
-      reset: () =>
-        set(() => ({
-          pluginList: [],
+      togglePluginStatus: (name: string) =>
+        set((state) => ({
+          plugins: state.plugins.map((plugin) =>
+            plugin.name === name
+              ? {
+                  ...plugin,
+                  status: plugin.status === "active" ? "inactive" : "active",
+                }
+              : plugin
+          ),
         })),
     }),
     {
       name: "plugin-storage",
-      onRehydrateStorage: () => (state) => {
-        if (state) {
-          state.pluginList = state.pluginList.map((plugin) => {
-            const originalPlugin = PLUGINS.find((p) => p.name === plugin.name);
-            return {
-              ...plugin,
-              render: originalPlugin?.render || (() => null),
-            };
-          });
-        }
-      },
     }
   )
 );
-
-export default usePluginStore;

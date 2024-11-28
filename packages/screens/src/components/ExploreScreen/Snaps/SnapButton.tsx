@@ -1,28 +1,22 @@
 "use client";
 import { TPluginData } from "@repo/constants";
 import { Button } from "@repo/ui/components/ui/button";
+import { usePluginStore } from "@repo/store";
 import { toast } from "sonner";
-import { usePluginManager } from "@repo/plugins";
 import { useMemo } from "react";
-import { usePluginStore, useShallow } from "@repo/store";
 const SnapButton = ({ snap, ...props }: { snap: TPluginData }) => {
-  const { registerPlugin, unregisterPlugin } = usePluginManager();
-  const pluginList = usePluginStore(useShallow((state) => state.pluginList));
+  const { plugins, addPlugin, removePlugin } = usePluginStore();
 
   const isInstalled = useMemo(
-    () => !!pluginList.find((i: TPluginData) => i.name === snap?.name),
-    [pluginList, snap]
+    () => !!plugins.find((i: TPluginData) => i.name === snap?.name),
+    [plugins, snap]
   );
   const handleInstallSnap = () => {
     if (isInstalled) {
-      unregisterPlugin(snap.name);
+      removePlugin(snap.name);
       toast.success("Remove snap successed!");
     } else {
-      registerPlugin(snap.name, {
-        image: snap.image,
-        render: snap.render,
-        scope: snap.scope,
-      });
+      addPlugin(snap);
       toast.success("Add snap successed!");
     }
   };

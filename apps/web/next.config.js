@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: [
       "coin98.s3.amazonaws.com",
@@ -21,5 +21,5 @@ module.exports = {
       "coin98.s3-ap-southeast-1.amazonaws.com"
     ],
   },
-  transpilePackages: ["@repo/ui","@repo/plugins"],
+  transpilePackages: ["@repo/ui"],
 };

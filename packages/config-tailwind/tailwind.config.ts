@@ -12,6 +12,7 @@ const config = {
     "./src/**/*.{ts,tsx}",
     "../../packages/ui/src/**/*.{ts,tsx}",
     "../../packages/screens/src/**/*.{ts,tsx}",
+    "../../packages/plugins/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {

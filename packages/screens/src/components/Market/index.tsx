@@ -1,12 +1,12 @@
-import React from "react";
+import TitleComponent from "@test/plugb/src/components/SwapForm/Title";
 
 const Market = () => {
   return (
     <div>
       <ul>
-        <li>Market 1</li>
-        <li>Market 2</li>
-        <li>Market 3</li>
+        <TitleComponent title="Market 1"></TitleComponent>
+        <TitleComponent title="Market 2"></TitleComponent>
+        <TitleComponent title="Market 3"></TitleComponent>
       </ul>
     </div>
   );
