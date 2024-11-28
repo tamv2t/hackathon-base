@@ -10,6 +10,7 @@ export type PluginContextValue = {
   // define the properties of PluginContextValue here
   register: (params: Plugin) => void;
   plugins: Plugin[];
+  unRegister: (name: string) => Plugin | undefined;
 };
 
 export const PluginContext = createContext<PluginContextValue>(
@@ -22,6 +23,8 @@ export const PluginContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [plugins, setPlugins] = useState<Plugin[]>([]);
+  console.log(plugins);
+
   const _ctx = useGlobalAction();
 
   const register = (params: Plugin) => {
@@ -38,11 +41,25 @@ export const PluginContextProvider = ({
       params.bootstrap(_ctx); // Boot plugin with context
     }
   };
+  const unRegister = (name: string): Plugin | undefined => {
+    // Find the plugin to remove
+    const pluginToRemove = plugins.find((plugin) => plugin.name === name);
 
+    if (!pluginToRemove) {
+      console.warn(`Plugin "${name}" is not registered.`);
+      return;
+    }
+    setPlugins((prevPlugins) =>
+      prevPlugins.filter((plugin) => plugin.name !== name)
+    );
+    _ctx.remove_all_action(name);
+    return pluginToRemove;
+  };
   return (
     <PluginContext.Provider
       value={{
         register,
+        unRegister,
         plugins,
       }}
     >

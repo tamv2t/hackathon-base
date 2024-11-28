@@ -7,9 +7,6 @@ import React from "react";
 interface CardSnapProps {
   item: TPluginData;
 }
-interface CardPluginProps {
-  item: any;
-}
 const CardSnap: React.FC<CardSnapProps> = ({ item }) => {
   return (
     <div className="p-2 rounded-sm">

@@ -1,13 +1,15 @@
+'use client';
 //This function will be create on another services
 import React, { FC, PropsWithChildren } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 export interface ActionContextType {
   add_action: (
     name: string,
     callback: Function,
-    type: 'action' | 'filter'
+    type: 'action' | 'filter',
+    pluginName: string
   ) => void;
   remove_action: (name: string) => void;
+  remove_all_action: (pluginName: string) => void;
   do_action: (name: string, ...args: any[]) => any;
   has_action: (name: string) => boolean;
   apply_filter: (name: string, ...args: any[]) => any;
@@ -24,30 +26,43 @@ export const ActionProvider: FC<PropsWithChildren> = ({ children }) => {
   const add_action = (
     name: string,
     callback: Function,
-    type: 'action' | 'filter'
+    type: 'action' | 'filter',
+    pluginName: string
   ) => {
-    const id = uuidv4();
     setActions((prev: any) => {
       const _next = prev[name] ?? [];
       return {
         ...prev,
-        [name]: [..._next, { id, callback, type }],
+        [name]: [..._next, { pluginName, callback, type }],
       };
     });
   };
 
-  const remove_action = (id: string) => {
+  const remove_action = (name: string) => {
+    setActions((prev: any) => {
+      const updatedActions = { ...prev };
+      if (updatedActions[name]) {
+        delete updatedActions[name];
+      }
+      console.log({ updatedActions });
+      return updatedActions;
+    });
+  };
+  const remove_all_action = (pluginName: string) => {
     setActions((prev: any) => {
       const updatedActions = { ...prev };
       for (const key in updatedActions) {
         updatedActions[key] = updatedActions[key].filter(
-          (action: any) => action.id !== id
+          (action: any) => action.pluginName !== pluginName
         );
+        if (updatedActions[key].length === 0) {
+          delete updatedActions[key];
+        }
       }
+      console.log('Updated Actions:', updatedActions);
       return updatedActions;
     });
   };
-
   const do_action = (name: string, ...args: any[]) => {
     const _actionsList = actions[name] ?? [];
 
@@ -73,6 +88,7 @@ export const ActionProvider: FC<PropsWithChildren> = ({ children }) => {
         do_action,
         has_action,
         apply_filter,
+        remove_all_action,
       }}
     >
       {children}

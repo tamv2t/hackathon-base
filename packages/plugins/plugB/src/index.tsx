@@ -1,9 +1,13 @@
 'use client';
-import { useGlobalAction, usePluginHelper } from '@repo/plugin-sdk';
+import {
+  useGlobalAction,
+  usePluginHelper,
+  useRegisterPlugin,
+} from '@repo/plugin-sdk';
 import { useEffect } from 'react';
 import { SwapForm } from './components/SwapForm';
 import React from 'react';
-import Card from './components/Card';
+import Card, { TCard } from './components/Card';
 
 // Delete me
 export const PluginB = () => {
@@ -17,7 +21,8 @@ export const PluginB = () => {
       () => {
         return <SwapForm />;
       },
-      'action'
+      'action',
+      'PluginB'
     );
 
     add_action(
@@ -25,14 +30,16 @@ export const PluginB = () => {
       () => {
         return <div>One more things</div>;
       },
-      'action'
+      'action',
+      'PluginB'
     );
     add_action(
       'subtitle',
       () => {
         return <div>One more thing 2222s</div>;
       },
-      'action'
+      'action',
+      'PluginB'
     );
   };
 
@@ -40,19 +47,17 @@ export const PluginB = () => {
     const _cardContent = apply_filter('change_content_card');
     return (
       <div>
-        {_cardContent.map((item: any, index: number) => (
+        {_cardContent.map((item: TCard, index: number) => (
           <Card item={item} key={index} />
         ))}
       </div>
     );
   };
-  useEffect(() => {
-    register({
-      name: 'PluginB',
-      author: 'Tammap',
-      bootstrap,
-    });
-  }, []);
+  useRegisterPlugin({
+    name: 'PluginB',
+    author: 'Tammap',
+    bootstrap,
+  });
   return (
     //Evering will render here.
     <div className="border rounded-lg p-4">

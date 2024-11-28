@@ -4,8 +4,10 @@ import { Button } from "@repo/ui/components/ui/button";
 import { usePluginStore } from "@repo/store";
 import { toast } from "sonner";
 import { useMemo } from "react";
+import { usePluginHelper } from "@repo/plugin-sdk";
 const SnapButton = ({ snap, ...props }: { snap: TPluginData }) => {
   const { plugins, addPlugin, removePlugin } = usePluginStore();
+  const { unRegister } = usePluginHelper();
 
   const isInstalled = useMemo(
     () => !!plugins.find((i: TPluginData) => i.name === snap?.name),
@@ -14,6 +16,7 @@ const SnapButton = ({ snap, ...props }: { snap: TPluginData }) => {
   const handleInstallSnap = () => {
     if (isInstalled) {
       removePlugin(snap.name);
+      unRegister(snap.name);
       toast.success("Remove snap successed!");
     } else {
       addPlugin(snap);

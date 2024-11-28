@@ -1,7 +1,12 @@
 import React from 'react';
 import { Button } from '@repo/ui';
+export type TCard = {
+  image: string;
+  name: string;
+  description: string;
+};
 interface CardSnapProps {
-  item: any;
+  item: TCard;
 }
 const Card: React.FC<CardSnapProps> = ({ item }) => {
   return (

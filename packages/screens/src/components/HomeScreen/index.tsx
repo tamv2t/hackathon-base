@@ -5,8 +5,10 @@ import Link from "next/link";
 import Hero from "./Hero";
 import { usePluginStore } from "@repo/store";
 import { PLUGINS } from "@repo/constants";
+import { useGlobalAction } from "@repo/plugin-sdk";
 const HomeScreen = () => {
   const { plugins } = usePluginStore();
+  const { remove_all_action } = useGlobalAction();
 
   const renderPlugin = () => {
     return plugins.map((storePlugin) => {

@@ -1,7 +1,6 @@
 'use client';
-import { useGlobalAction, usePluginHelper } from '@repo/plugin-sdk';
+import { useGlobalAction, useRegisterPlugin } from '@repo/plugin-sdk';
 import React from 'react';
-import { useEffect } from 'react';
 const TOKEN = [
   {
     symbol: 'CAKE',
@@ -19,8 +18,6 @@ const TOKEN = [
 
 export const PluginFeature = () => {
   const { add_action } = useGlobalAction();
-  const { register } = usePluginHelper();
-
   const bootstrap = () => {
     //This fn can be extracted;
     add_action(
@@ -29,7 +26,8 @@ export const PluginFeature = () => {
         const [original] = args;
         return original.flat().concat(TOKEN);
       },
-      'filter'
+      'filter',
+      'Plug Feature'
     );
     add_action(
       'format_input',
@@ -42,7 +40,8 @@ export const PluginFeature = () => {
           maximumFractionDigits: 0,
         }).format(parseFloat(amount));
       },
-      'filter'
+      'filter',
+      'Plug Feature'
     );
     add_action(
       'infor_token_swap',
@@ -57,7 +56,8 @@ export const PluginFeature = () => {
           </div>
         );
       },
-      'action'
+      'action',
+      'Plug Feature'
     );
     add_action(
       'change_content_card',
@@ -71,18 +71,16 @@ export const PluginFeature = () => {
         };
         return original;
       },
-      'filter'
+      'filter',
+      'Plug Feature'
     );
   };
 
-  useEffect(() => {
-    register({
-      name: 'Plug Feature',
-      author: 'DangVu',
-      bootstrap,
-    });
-  }, []);
-
+  useRegisterPlugin({
+    name: 'Plug Feature',
+    author: 'DangVu',
+    bootstrap,
+  });
   //This plugin will return nothing, only apply function to ours main components;
   return null;
 };
