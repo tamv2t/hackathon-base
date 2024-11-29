@@ -44,7 +44,6 @@ export const ActionProvider: FC<PropsWithChildren> = ({ children }) => {
       if (updatedActions[name]) {
         delete updatedActions[name];
       }
-      console.log({ updatedActions });
       return updatedActions;
     });
   };
@@ -59,7 +58,6 @@ export const ActionProvider: FC<PropsWithChildren> = ({ children }) => {
           delete updatedActions[key];
         }
       }
-      console.log('Updated Actions:', updatedActions);
       return updatedActions;
     });
   };
