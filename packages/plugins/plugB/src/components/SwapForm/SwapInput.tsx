@@ -6,27 +6,29 @@ const renderInput = () => {
   const { apply_filter, has_action } = useGlobalAction();
   const [formattedValue, setFormattedValue] = useState<string>('');
 
-  if (has_action('format_input')) {
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const rawValue = event.target.value;
-      const newFormattedValue = apply_filter('format_input', rawValue);
-      console.log('Formatted Input:', newFormattedValue.join(''));
-      setFormattedValue(newFormattedValue);
-    };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = event.target.value;
 
-    return (
-      <Input
-        type="text"
-        placeholder="0.0"
-        className="flex-1 h-7"
-        value={formattedValue}
-        onChange={handleInputChange}
-      />
-    );
-  }
+    // Format input if the action exists, otherwise set raw value
+    const newFormattedValue =
+      has_action('format_input') && rawValue.length
+        ? apply_filter('format_input', rawValue).join('')
+        : rawValue;
 
-  return <Input type="text" placeholder="0.0" className="flex-1 h-7" />;
+    setFormattedValue(newFormattedValue);
+  };
+
+  return (
+    <Input
+      type="text"
+      placeholder="0.0"
+      className="flex-1 h-7"
+      value={formattedValue}
+      onChange={handleInputChange}
+    />
+  );
 };
+
 const SwapInput = () => {
   const { do_action } = useGlobalAction();
   return (

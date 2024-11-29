@@ -13,22 +13,25 @@ export const PluginArea = () => {
       if (!matchingPlugin || !matchingPlugin.plugin) {
         return null;
       }
-
-      let positionStyles = {};
-      if (matchingPlugin.size) {
-        const [widthRatio, heightRatio] = matchingPlugin.size
-          .split('x')
-          .map(Number);
-        positionStyles = {
-          gridColumn: `span ${widthRatio}`,
-          gridRow: `span ${heightRatio}`,
-        };
-      }
-
+      const positionStyles = matchingPlugin.size
+        ? (() => {
+            const [widthRatio, heightRatio] = matchingPlugin.size
+              .split('x')
+              .map(Number);
+            return {
+              gridColumn: `span ${widthRatio}`,
+              gridRow: `span ${heightRatio}`,
+            };
+          })()
+        : { display: 'none' };
       const PluginComponent = matchingPlugin.plugin;
 
       return (
-        <div key={storePlugin.name} style={positionStyles}>
+        <div
+          key={storePlugin.name}
+          style={positionStyles}
+          className="text-nowrap"
+        >
           <PluginComponent />
         </div>
       );
