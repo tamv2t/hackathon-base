@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGlobalAction } from '@repo/plugin-sdk';
+import { useGlobalHook } from '@repo/plugin-sdk';
 import {
   Select,
   SelectContent,
@@ -29,10 +29,10 @@ const TOKENLIST = [
 ];
 
 const SelectToken = () => {
-  const { apply_filter, has_action } = useGlobalAction();
+  const { apply_filter, has_filter } = useGlobalHook();
 
   const renderTokenList = () => {
-    const _data = has_action('token_list')
+    const _data = has_filter('token_list')
       ? apply_filter('token_list', TOKENLIST)
       : TOKENLIST;
 

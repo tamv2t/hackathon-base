@@ -1,10 +1,10 @@
 'use client';
 import React, { createContext, useState } from 'react';
-import { ActionContextType, useGlobalAction } from './base';
+import { HookContextType, useGlobalHook } from './base';
 export type Plugin = {
   name: string;
   author: string;
-  bootstrap: (_ctx: ActionContextType) => void;
+  bootstrap: (_ctx: HookContextType) => void;
 };
 export type PluginContextValue = {
   // define the properties of PluginContextValue here
@@ -23,9 +23,8 @@ export const PluginContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [plugins, setPlugins] = useState<Plugin[]>([]);
-  console.log(plugins);
 
-  const _ctx = useGlobalAction();
+  const _ctx = useGlobalHook();
 
   const register = (params: Plugin) => {
     // Check for duplicate plugins
@@ -52,7 +51,7 @@ export const PluginContextProvider = ({
     setPlugins((prevPlugins) =>
       prevPlugins.filter((plugin) => plugin.name !== name)
     );
-    _ctx.remove_all_action(name);
+    _ctx.remove_all_hook(name);
     return pluginToRemove;
   };
   return (

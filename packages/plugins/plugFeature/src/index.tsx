@@ -1,5 +1,5 @@
 'use client';
-import { useGlobalAction, useRegisterPlugin } from '@repo/plugin-sdk';
+import { useGlobalHook, useRegisterPlugin } from '@repo/plugin-sdk';
 import React from 'react';
 const TOKEN = [
   {
@@ -17,10 +17,10 @@ const TOKEN = [
 ];
 
 export const PluginFeature = () => {
-  const { add_action } = useGlobalAction();
+  const { add_hook } = useGlobalHook();
   const bootstrap = () => {
     //This fn can be extracted;
-    add_action(
+    add_hook(
       'token_list',
       (...args: any[]) => {
         const [original] = args;
@@ -29,10 +29,10 @@ export const PluginFeature = () => {
       'filter',
       'Plug Feature'
     );
-    add_action(
+    add_hook(
       'format_input',
       (inputAmount: any) => {
-        const amount = inputAmount.join('').replace(/,/g, '');
+        const amount = inputAmount.replace(/,/g, '');
         if (isNaN(Number(amount))) return amount;
         return new Intl.NumberFormat('en-US', {
           useGrouping: true,
@@ -43,7 +43,7 @@ export const PluginFeature = () => {
       'filter',
       'Plug Feature'
     );
-    add_action(
+    add_hook(
       'infor_token_swap',
       () => {
         return (
@@ -59,7 +59,7 @@ export const PluginFeature = () => {
       'action',
       'Plug Feature'
     );
-    add_action(
+    add_hook(
       'change_content_card',
       (...args: any[]) => {
         let [original] = args;

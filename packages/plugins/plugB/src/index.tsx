@@ -1,22 +1,16 @@
 'use client';
-import {
-  useGlobalAction,
-  usePluginHelper,
-  useRegisterPlugin,
-} from '@repo/plugin-sdk';
-import { useEffect } from 'react';
+import { useGlobalHook, useRegisterPlugin } from '@repo/plugin-sdk';
 import { SwapForm } from './components/SwapForm';
 import React from 'react';
 import Card, { TCard } from './components/Card';
 
 // Delete me
 export const PluginB = () => {
-  const { add_action, do_action, apply_filter } = useGlobalAction();
-  const { register } = usePluginHelper();
+  const { add_hook, do_action, apply_filter } = useGlobalHook();
 
   const bootstrap = () => {
     //This fn can be extracted;
-    add_action(
+    add_hook(
       'swap',
       () => {
         return <SwapForm />;
@@ -25,7 +19,7 @@ export const PluginB = () => {
       'PluginB'
     );
 
-    add_action(
+    add_hook(
       'subtitle',
       () => {
         return <div>One more things</div>;
@@ -33,7 +27,7 @@ export const PluginB = () => {
       'action',
       'PluginB'
     );
-    add_action(
+    add_hook(
       'subtitle',
       () => {
         return <div>One more thing 2222s</div>;
@@ -60,7 +54,7 @@ export const PluginB = () => {
   });
   return (
     //Evering will render here.
-    <div className="border rounded-lg p-4">
+    <div className="border rounded-lg p-4 border-dividerColorDefault">
       This is plugin B{renderCard()}
       {do_action('subtitle')}
     </div>

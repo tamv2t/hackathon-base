@@ -1,4 +1,4 @@
-export * from './context';
+export * from './context/pluginContext';
 export * from './utils';
-export * from './base';
+export * from './context/base';
 export * from './components';

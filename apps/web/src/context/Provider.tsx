@@ -1,12 +1,12 @@
 "use client";
-import { ActionProvider, PluginContextProvider } from "@repo/plugin-sdk";
+import { HookProvider, PluginContextProvider } from "@repo/plugin-sdk";
 import React, { FC, PropsWithChildren } from "react";
 
 const Provider: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <ActionProvider>
+    <HookProvider>
       <PluginContextProvider>{children}</PluginContextProvider>
-    </ActionProvider>
+    </HookProvider>
   );
 };
 
