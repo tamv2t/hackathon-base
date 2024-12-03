@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@repo/constants": "*",
-    "@repo/ui": "*",
-    "@repo/screens": "*",
     "@repo/plugin-sdk": "*",
+    "@repo/screens": "*",
+    "@repo/ui": "*",
     "next": "^14.2.3",
     "next-themes": "^0.4.3",
     "react": "^18.2.0",

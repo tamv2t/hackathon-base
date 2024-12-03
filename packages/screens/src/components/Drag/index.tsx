@@ -1,14 +1,11 @@
-import { PLUGINS, TPluginData } from '@repo/constants';
-import { PluginStore, usePluginStore, useShallow } from '@repo/store';
-import { Sortable, SortableItem } from '@repo/ui';
-import { closestCorners } from '@dnd-kit/core';
-import React from 'react';
-export const PluginArea = () => {
-  const plugins = usePluginStore(
-    useShallow((state: PluginStore) => state.plugins)
-  );
+import { PLUGINS, TPluginData } from "@repo/constants";
+import { usePluginStore, useShallow } from "@repo/store";
+import { Sortable, SortableItem } from "@repo/ui";
+import { closestCorners } from "@dnd-kit/core";
+export const DragComponent = () => {
+  const plugins = usePluginStore(useShallow((state) => state.plugins));
   const backupPlugins = usePluginStore(
-    useShallow((state: PluginStore) => state.backupPlugins)
+    useShallow((state) => state.backupPlugins)
   );
 
   const renderPlugin = () => {
@@ -23,14 +20,14 @@ export const PluginArea = () => {
       const positionStyles = matchingPlugin.size
         ? (() => {
             const [widthRatio, heightRatio] = matchingPlugin.size
-              .split('x')
+              .split("x")
               .map(Number);
             return {
               gridColumn: `span ${widthRatio}`,
               gridRow: `span ${heightRatio}`,
             };
           })()
-        : { display: 'none' };
+        : { display: "none" };
       const PluginComponent = matchingPlugin.plugin;
 
       return (

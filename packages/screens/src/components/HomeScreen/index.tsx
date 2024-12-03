@@ -4,6 +4,8 @@ import { Separator } from "@repo/ui/components/ui/separator";
 import Link from "next/link";
 import Hero from "./Hero";
 import { PluginArea } from "@repo/plugin-sdk";
+import { MixedSortingDemo } from "../Mixed";
+import { DragComponent } from "../Drag";
 const HomeScreen = () => {
   return (
     <section className="flex flex-col gap-y-8 ">
@@ -19,6 +21,8 @@ const HomeScreen = () => {
         </Link>
       </div>
       <PluginArea />
+      <MixedSortingDemo />
+      {/* <DragComponent /> */}
     </section>
   );
 };

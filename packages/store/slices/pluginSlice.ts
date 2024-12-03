@@ -2,11 +2,12 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { TPluginData } from "@repo/constants";
 
-interface PluginStore {
+export interface PluginStore {
   plugins: TPluginData[];
   addPlugin: (plugin: TPluginData) => void;
   removePlugin: (name: string) => void;
   updatePlugin: (name: string, data: Partial<TPluginData>) => void;
+  backupPlugins: (plugins: TPluginData[]) => void;
   togglePluginStatus: (name: string) => void;
 }
 
@@ -29,7 +30,7 @@ export const usePluginStore = create<PluginStore>()(
             plugin.name === name ? { ...plugin, ...data } : plugin
           ),
         })),
-
+      backupPlugins: (plugins) => set({ plugins }),
       togglePluginStatus: (name: string) =>
         set((state) => ({
           plugins: state.plugins.map((plugin) =>
