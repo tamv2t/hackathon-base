@@ -162,12 +162,6 @@ function Sortable<TData extends { id: UniqueIdentifier }>({
           if (onMove) {
             onMove({ activeIndex, overIndex });
           } else {
-            console.log({
-              value,
-              activeIndex,
-              overIndex,
-            });
-
             onValueChange?.(arrayMove(value, activeIndex, overIndex));
           }
         }
@@ -208,7 +202,12 @@ const SortableOverlay = React.forwardRef<HTMLDivElement, SortableOverlayProps>(
     ref
   ) => {
     return (
-      <DragOverlay dropAnimation={dropAnimation} {...props}>
+      <DragOverlay
+        adjustScale
+        style={{ transformOrigin: "0 0 " }}
+        dropAnimation={dropAnimation}
+        {...props}
+      >
         {activeId ? (
           <SortableItem
             ref={ref}
@@ -292,7 +291,11 @@ const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
     const style: React.CSSProperties = {
       opacity: isDragging ? 0.5 : 1,
       transform: CSS.Translate.toString(transform),
+      // transform: isDragging ? "scale(1.05)" : "scale(1)",
       transition,
+      boxShadow: isDragging
+        ? "rgb(63 63 68 / 5%) 0px 2px 0px 2px, rgb(34 33 81 / 15%) 0px 2px 3px 2px"
+        : "rgb(63 63 68 / 5%) 0px 0px 0px 1px, rgb(34 33 81 / 15%) 0px 1px 3px 0px",
     };
 
     const Comp = asChild ? Slot : "div";

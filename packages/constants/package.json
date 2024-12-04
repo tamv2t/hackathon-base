@@ -9,7 +9,8 @@
   "dependencies": {
     "@test/pluga": "*",
     "@test/plugb": "*",
-    "@test/plug_feature": "*"
+    "@test/plug_feature": "*",
+    "@test/plug_portfolio": "*"
   },
   "author": "",
   "license": "ISC",
