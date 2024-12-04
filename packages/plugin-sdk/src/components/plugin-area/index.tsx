@@ -1,15 +1,21 @@
 import { PLUGINS, TPluginData } from '@repo/constants';
-import { PluginStore, usePluginStore, useShallow } from '@repo/store';
+import {
+  PluginStore,
+  usePluginStore,
+  useShallow,
+  useSortableStore,
+} from '@repo/store';
 import { Sortable, SortableItem } from '@repo/ui';
 import { closestCorners } from '@dnd-kit/core';
 import React from 'react';
+import ToggleSortable from '../ToggleSortable';
+import { SortableState } from '@repo/store/slices/sortableSlice';
 export const PluginArea = () => {
-  const plugins = usePluginStore(
-    useShallow((state: PluginStore) => state.plugins)
-  );
+  const plugins = usePluginStore((state: PluginStore) => state.plugins);
   const backupPlugins = usePluginStore(
-    useShallow((state: PluginStore) => state.backupPlugins)
+    (state: PluginStore) => state.backupPlugins
   );
+  const disable = useSortableStore((state: SortableState) => state.disabled);
 
   const renderPlugin = () => {
     return plugins.map((storePlugin: TPluginData) => {
@@ -17,9 +23,8 @@ export const PluginArea = () => {
         (plugin) => plugin.name === storePlugin.name
       );
 
-      if (!matchingPlugin || !matchingPlugin.plugin) {
-        return null;
-      }
+      if (!matchingPlugin || !matchingPlugin.plugin) return null;
+
       const positionStyles = matchingPlugin.size
         ? (() => {
             const [widthRatio, heightRatio] = matchingPlugin.size
@@ -31,37 +36,53 @@ export const PluginArea = () => {
             };
           })()
         : { display: 'none' };
+
       const PluginComponent = matchingPlugin.plugin;
 
-      return (
-        <SortableItem
+      const PluginWrapper = (
+        <div
           key={storePlugin.name}
-          value={storePlugin.name}
-          asTrigger
-          asChild
+          style={positionStyles}
+          className="text-nowrap"
         >
-          <div
-            key={storePlugin.name}
-            style={positionStyles}
-            className="text-nowrap"
-          >
-            <PluginComponent />
-          </div>
-        </SortableItem>
+          <PluginComponent />
+        </div>
       );
+
+      if (disable) {
+        return (
+          <SortableItem
+            key={storePlugin.name}
+            value={storePlugin.name}
+            asTrigger
+            asChild
+          >
+            {PluginWrapper}
+          </SortableItem>
+        );
+      }
+
+      return PluginWrapper;
     });
   };
+
   return (
-    <div className="grid grid-cols-12 gap-3">
-      <Sortable
-        orientation="mixed"
-        collisionDetection={closestCorners}
-        value={plugins}
-        onValueChange={backupPlugins}
-        overlay={<div className="size-full rounded-md bg-primary/10" />}
-      >
-        {renderPlugin()}
-      </Sortable>
+    <div>
+      <ToggleSortable />
+      <div className="grid grid-cols-12 gap-3">
+        {disable ? (
+          <Sortable
+            orientation="mixed"
+            collisionDetection={closestCorners}
+            value={plugins}
+            onValueChange={backupPlugins}
+          >
+            {renderPlugin()}
+          </Sortable>
+        ) : (
+          renderPlugin()
+        )}
+      </div>
     </div>
   );
 };

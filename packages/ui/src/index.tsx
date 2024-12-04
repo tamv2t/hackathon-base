@@ -9,3 +9,4 @@ export * from "./components/ui/slider";
 export * from "./components/ui/sonner";
 export * from "./components/ui/card";
 export * from "./components/ui/sortable";
+export * from "./components/ui/switch";

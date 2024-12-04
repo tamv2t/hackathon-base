@@ -28,9 +28,26 @@ const config = {
       gridTemplateColumns: {
         autoFill: "repeat(auto-fill, minmax(300px, 1fr))",
       },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-15deg)" },
+          "50%": { transform: "rotate(15deg)" },
+        },
+        heartBeat: {
+          "0%": { transform: "scale(1);" },
+          "14%": { transform: "scale(1.01);" },
+          "28%": { transform: "scale(1);" },
+          "42%": { transform: "scale(1.01);" },
+          "70%": { transform: "scale(1);" },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 1s ease-in-out infinite",
+        heartBeat: "heartBeat 1s infinite",
+      },
     },
   },
-  plugins: [tailwindcssAnimate],
+  // plugins: [tailwindcssAnimate],
 } satisfies Config;
 
 export default config;
