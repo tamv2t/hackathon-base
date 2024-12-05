@@ -1,4 +1,3 @@
-'use client';
 import { Button, Icon, Input } from '@repo/ui';
 import React, { useState } from 'react';
 import { mockUserInfo } from '../../mocks';

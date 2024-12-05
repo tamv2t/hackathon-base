@@ -1,4 +1,3 @@
-'use client';
 import React, { createContext, useState } from 'react';
 import { HookContextType, useGlobalHook } from './base';
 export type Plugin = {

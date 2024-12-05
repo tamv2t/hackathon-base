@@ -11,7 +11,8 @@
     "plugins"
   ],
   "dependencies": {
-    "zustand": "^5.0.1"
+    "zustand": "^5.0.1",
+    "@repo/typescript-config": "workspace:*"
   },
   "engines": {
     "node": ">=18.12.0",
@@ -20,6 +21,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "@repo/constants": "*",
   "license": "ISC"
 }

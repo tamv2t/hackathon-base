@@ -2,7 +2,7 @@
   "name": "@repo/ui",
   "version": "0.0.0",
   "sideEffects": [
-    "**/*.css"
+    "workspace:*workspace:*/workspace:*.css"
   ],
   "files": [
     "dist"
@@ -13,8 +13,8 @@
     "./globals.css": "./src/globals.css",
     "./postcss.config": "./postcss.config.mjs",
     "./tailwind.config": "./tailwind.config.ts",
-    "./lib/*": "./src/lib/*.ts",
-    "./components/*": "./src/components/*.tsx",
+    "./lib/workspace:*": "./src/lib/workspace:*.ts",
+    "./components/workspace:*": "./src/components/workspace:*.tsx",
     ".": "./src/index.tsx"
   },
   "license": "MIT",
@@ -26,9 +26,9 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/tailwind-config": "*",
-    "@repo/typescript-config": "*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@types/react": "^18.2.61",
     "autoprefixer": "^10.4.18",
     "postcss": "^8.4.35",

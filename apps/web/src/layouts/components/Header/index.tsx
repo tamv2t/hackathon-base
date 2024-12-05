@@ -1,5 +1,5 @@
 "use client";
-import { Icon } from "@repo/ui/components/ui/icon";
+import { Icon } from "@repo/ui";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";

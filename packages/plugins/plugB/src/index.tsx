@@ -1,4 +1,3 @@
-'use client';
 import { useGlobalHook, useRegisterPlugin } from '@repo/plugin-sdk';
 import { SwapForm } from './components/SwapForm';
 import React from 'react';

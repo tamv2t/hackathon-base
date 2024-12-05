@@ -35,9 +35,8 @@ import { CSS } from "@dnd-kit/utilities";
 import { Slot, type SlotProps } from "@radix-ui/react-slot";
 
 import { Button, ButtonProps } from "./button";
-import { cn } from "@repo/ui/lib/utils";
-
-import { composeRefs } from "@repo/ui/lib/compose-refs";
+import { composeRefs } from "../../lib/compose-refs";
+import { cn } from "../../lib/utils";
 
 const orientationConfig = {
   vertical: {

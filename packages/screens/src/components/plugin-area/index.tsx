@@ -1,15 +1,9 @@
-import { PLUGINS, TPluginData } from '@repo/constants';
-import {
-  PluginStore,
-  usePluginStore,
-  useShallow,
-  useSortableStore,
-} from '@repo/store';
-import { Sortable, SortableItem } from '@repo/ui';
-import { closestCorners } from '@dnd-kit/core';
-import React from 'react';
-import ToggleSortable from '../ToggleSortable';
-import { SortableState } from '@repo/store/slices/sortableSlice';
+import { closestCorners } from "@dnd-kit/core";
+import { PLUGINS, TPluginData } from "@repo/constants";
+import { PluginStore, usePluginStore, useSortableStore } from "@repo/store";
+import { SortableState } from "@repo/store/slices/sortableSlice";
+import { Sortable, SortableItem } from "@repo/ui";
+import ToggleSortable from "./ToggleSortable";
 export const PluginArea = () => {
   const plugins = usePluginStore((state: PluginStore) => state.plugins);
   const backupPlugins = usePluginStore(
@@ -28,14 +22,14 @@ export const PluginArea = () => {
       const positionStyles = matchingPlugin.size
         ? (() => {
             const [widthRatio, heightRatio] = matchingPlugin.size
-              .split('x')
+              .split("x")
               .map(Number);
             return {
               gridColumn: `span ${widthRatio}`,
               gridRow: `span ${heightRatio}`,
             };
           })()
-        : { display: 'none' };
+        : { display: "none" };
 
       const PluginComponent = matchingPlugin.plugin;
 

@@ -1,11 +1,10 @@
 "use client";
 
-import { Separator } from "@repo/ui/components/ui/separator";
+import { Separator } from "@repo/ui";
 import Link from "next/link";
 import Hero from "./Hero";
-import { PluginArea } from "@repo/plugin-sdk";
 import { MixedSortingDemo } from "../Mixed";
-import { Switch } from "@repo/ui";
+import { PluginArea } from "../plugin-area";
 const HomeScreen = () => {
   return (
     <section className="flex flex-col gap-y-8 ">

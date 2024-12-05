@@ -1,5 +1,5 @@
 "use client";
-import { Toaster } from "@repo/ui/components/ui/sonner";
+import { Toaster } from "@repo/ui";
 import { ThemeProvider } from "next-themes";
 import Header from "./components/Header";
 interface IMyLayout {

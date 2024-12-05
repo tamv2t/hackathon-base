@@ -1,7 +1,6 @@
-import { useSortableStore } from '@repo/store';
-import { SortableState } from '@repo/store/slices/sortableSlice';
-import { Switch } from '@repo/ui';
-import React from 'react';
+import { useSortableStore } from "@repo/store";
+import { SortableState } from "@repo/store/slices/sortableSlice";
+import { Switch } from "@repo/ui";
 
 const ToggleSortable = () => {
   const disable = useSortableStore((state: SortableState) => state.disabled);

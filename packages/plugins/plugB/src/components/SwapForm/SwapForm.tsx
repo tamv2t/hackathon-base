@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -95,7 +94,7 @@ const SwapForm = () => {
           <FormField
             control={form.control}
             name="tokenFirst"
-            render={({ field }) => (
+            render={() => (
               <FormItem>
                 <FormLabel>Input amount</FormLabel>
                 <FormControl>
@@ -117,7 +116,7 @@ const SwapForm = () => {
           <FormField
             control={form.control}
             name="tokenSecond"
-            render={({ field }) => (
+            render={() => (
               <FormItem>
                 <FormLabel>Input amount</FormLabel>
                 <FormControl>

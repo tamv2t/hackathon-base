@@ -1,10 +1,9 @@
-'use client';
 import { useGlobalHook, useRegisterPlugin } from '@repo/plugin-sdk';
 import React from 'react';
 import Portfolio from './components/Portfolio';
 
 export const PluginPortfolio = () => {
-  const { add_hook, do_action } = useGlobalHook();
+  const { add_hook } = useGlobalHook();
 
   const bootstrap = () => {
     //This fn can be extracted;
@@ -27,7 +26,6 @@ export const PluginPortfolio = () => {
     <div className="border rounded-lg p-4 border-dividerColorDefault">
       This is Plugin Portfolio
       <Portfolio />
-      {/* {do_action('subtitle')} */}
     </div>
   );
 };

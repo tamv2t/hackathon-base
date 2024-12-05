@@ -7,10 +7,11 @@
   },
   "keywords": [],
   "dependencies": {
-    "@test/pluga": "*",
-    "@test/plugb": "*",
-    "@test/plug_feature": "*",
-    "@test/plug_portfolio": "*"
+    "@test/pluga": "workspace:*",
+    "@test/plugb": "workspace:*",
+    "@test/plug_feature": "workspace:*",
+    "@test/plug_portfolio": "workspace:*",
+    "@repo/typescript-config": "workspace:*"
   },
   "author": "",
   "license": "ISC",

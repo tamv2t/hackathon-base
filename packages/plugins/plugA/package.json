@@ -59,6 +59,7 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@repo/plugin-sdk": "*"
+    "@repo/plugin-sdk": "workspace:*",
+    "@repo/typescript-config": "workspace:*"
   }
 }

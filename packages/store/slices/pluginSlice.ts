@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { TPluginData } from "@repo/constants";
+import { TPluginData } from "../types";
 
 export interface PluginStore {
   plugins: TPluginData[];

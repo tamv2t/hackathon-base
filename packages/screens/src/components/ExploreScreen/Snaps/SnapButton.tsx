@@ -1,6 +1,6 @@
 "use client";
 import { TPluginData } from "@repo/constants";
-import { Button } from "@repo/ui/components/ui/button";
+import { Button } from "@repo/ui";
 import { usePluginStore } from "@repo/store";
 import { toast } from "sonner";
 import { useMemo } from "react";

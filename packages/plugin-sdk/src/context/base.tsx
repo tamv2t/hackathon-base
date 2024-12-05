@@ -1,4 +1,3 @@
-'use client';
 //This function will be create on another services
 import React, { FC, PropsWithChildren } from 'react';
 import { THooksMap } from '../types';

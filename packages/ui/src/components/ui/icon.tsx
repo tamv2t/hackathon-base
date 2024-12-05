@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ICONS } from "../../icons";
+import { ICONS } from "../../constants/icons";
 
 interface IIcon extends React.HTMLAttributes<HTMLSpanElement> {
   name: (typeof ICONS)[number];

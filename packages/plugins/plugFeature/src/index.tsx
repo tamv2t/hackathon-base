@@ -1,4 +1,3 @@
-'use client';
 import { useGlobalHook, useRegisterPlugin } from '@repo/plugin-sdk';
 import React from 'react';
 const TOKEN = [
