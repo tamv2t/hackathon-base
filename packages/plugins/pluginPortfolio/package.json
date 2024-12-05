@@ -21,14 +21,14 @@
   },
   "peerDependencies": {
     "react": ">=16",
-    "zustand": "*"
+    "zustand": "^5.0.1"
   },
   "dependencies": {
     "@repo/plugin-sdk": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "zustand": "*"
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.1.6",
@@ -56,9 +56,6 @@
   "name": "@test/plug_portfolio",
   "author": "DangVu137",
   "module": "dist/pluginportfolio.esm.js",
-  "resolutions": {
-    "zustand": "./node_modules/zustand"
-  },
   "size-limit": [
     {
       "path": "dist/pluginportfolio.cjs.production.min.js",
