@@ -2,27 +2,6 @@
 
 A flexible plugin system for React applications that provides hook-based extensibility and plugin management.
 
-## Core Components
-
-### Plugin Area (plugin-area/index.tsx)
-- Renders a grid layout of registered plugins
-- Supports drag-and-drop reordering using @dnd-kit
-- Handles dynamic plugin sizing through configurable grid spans
-- Integrates with plugin store for state management
-- The PluginArea component supports a grid-based layout system where plugins can specify their size using the format "widthxheight":
-const PLUGINS = [
-  {
-    name: 'large-plugin',
-    plugin: LargePluginComponent,
-    size: '6x2' // Takes 6 columns width, 2 rows height
-  },
-  {
-    name: 'small-plugin',
-    plugin: SmallPluginComponent,
-    size: '3x1' // Takes 3 columns width, 1 row height
-  }
-];
-
 ### Plugin Context (context/pluginContext.tsx)
 - Manages plugin registration and lifecycle
 - Provides context for plugin operations:

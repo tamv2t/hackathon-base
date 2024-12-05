@@ -11,7 +11,8 @@
     "@test/plugb": "workspace:*",
     "@test/plug_feature": "workspace:*",
     "@test/plug_portfolio": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "uuid": "^11.0.3"
   },
   "author": "",
   "license": "ISC",

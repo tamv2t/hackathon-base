@@ -1,20 +1,25 @@
 import { Button, Icon, Input } from '@repo/ui';
 import React, { useState } from 'react';
 import { mockUserInfo } from '../../mocks';
+import { useGlobalHook } from '@repo/plugin-sdk';
+import { UserStore, useUserStore } from '../../store/userInforSlide';
 import { TUserInfo } from '../../types';
 
 const Portfolio = () => {
   //STATES
-  const [results, setResults] = useState<TUserInfo[]>([]);
   const [inputAddress, setInputAddress] = useState('');
+  const users = useUserStore((state: UserStore) => state.users);
+  const setUsers = useUserStore((state: UserStore) => state.setUsers);
+
   //CONST
   const _addressList = Array.from(
     new Set(mockUserInfo.map((user) => user.address))
   );
+  const { apply_filter } = useGlobalHook();
 
   const handleSearchData = () => {
-    const _res = mockUserInfo.filter((user) => user.address === inputAddress);
-    setResults(_res);
+    const _res = apply_filter('dataPortfolio', mockUserInfo, inputAddress);
+    setUsers(_res.flat());
   };
 
   return (
@@ -32,10 +37,10 @@ const Portfolio = () => {
         </Button>
       </div>
       <div className="py-4">
-        {results.length === 0 ? (
+        {users.length === 0 ? (
           <p>No data found!</p>
         ) : (
-          results.map((item, index) => (
+          users.map((item: TUserInfo, index: number) => (
             <div
               className="flex gap-x-2 items-center mb-1 border-b border-backgroundWrapper"
               key={index}

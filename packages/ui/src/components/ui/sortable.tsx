@@ -149,8 +149,6 @@ function Sortable<TData extends { id: UniqueIdentifier }>({
       modifiers={modifiers ?? config.modifiers}
       sensors={sensors}
       onDragStart={({ active }) => {
-        console.log(active);
-
         setActiveId(active.id);
       }}
       onDragEnd={({ active, over }) => {

@@ -46,8 +46,8 @@ export const PluginArea = () => {
       if (disable) {
         return (
           <SortableItem
-            key={storePlugin.name}
-            value={storePlugin.name}
+            key={storePlugin.id}
+            value={storePlugin.id}
             asTrigger
             asChild
           >
