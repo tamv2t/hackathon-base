@@ -15,6 +15,7 @@ import { z } from 'zod';
 import ControlPanel from './ControlPanel';
 import SelectToken from './SelectToken';
 import SwapInput from './SwapInput';
+import { useGlobalHook } from '@repo/plugin-sdk';
 
 interface SwapInforProps {
   title: string;
@@ -35,6 +36,7 @@ const SwapInfor: React.FC<SwapInforProps> = ({ title, panel }) => {
   );
 };
 const SwapForm = () => {
+  const { do_action } = useGlobalHook();
   const priceInfor = [
     {
       title: 'Rate',
@@ -86,6 +88,9 @@ const SwapForm = () => {
     <div className="duration-300 visible rounded-lg self-start p-4 bg-backgroundChild  w-full text-textTitle mx-auto">
       <ControlPanel />
       <SelectToken />
+
+      <div id="#id">ewfewfewfew</div>
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -112,6 +117,11 @@ const SwapForm = () => {
               <Icon name="app_swap" className="text-2xl" />
             </p>
           </button>
+
+          <div>
+            Gwei
+            {do_action('abc')}
+          </div>
 
           <FormField
             control={form.control}

@@ -2,8 +2,8 @@ import { Button, Icon, Input } from '@repo/ui';
 import React, { useState } from 'react';
 import { mockUserInfo } from '../../mocks';
 import { useGlobalHook } from '@repo/plugin-sdk';
-import { UserStore, useUserStore } from '../../store/userInforSlide';
-import { TUserInfo } from '../../types';
+import { UserStore, useUserStore } from '@repo/store';
+import { TUserInfo } from '@repo/store/types';
 
 const Portfolio = () => {
   //STATES

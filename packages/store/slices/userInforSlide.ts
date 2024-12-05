@@ -1,7 +1,6 @@
-//@ts-nocheck
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { TUserInfo } from '../types';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { TUserInfo } from "../types";
 export interface UserStore {
   users: TUserInfo[];
   setUsers: (users: TUserInfo[]) => void;
@@ -23,7 +22,7 @@ export const useUserStore = create<UserStore>()(
         })),
     }),
     {
-      name: 'userPortfolio-storage', // key local storage
+      name: "userPortfolio-storage", // key local storage
     }
   )
 );

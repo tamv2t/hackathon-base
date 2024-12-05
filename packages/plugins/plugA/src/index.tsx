@@ -3,7 +3,7 @@ import {
   useGlobalHook,
   useRegisterPlugin,
 } from '@repo/plugin-sdk';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export const PluginA = () => {
   const { do_action, add_hook } = useGlobalHook();
@@ -18,7 +18,20 @@ export const PluginA = () => {
       'action',
       'PluginA'
     );
+
+    add_hook(
+      'abc',
+      () => {
+        return <div>hello</div>;
+      },
+      'action',
+      'PluginA'
+    );
   };
+
+  useEffect(() => {
+    do_action('abc');
+  }, []);
 
   useRegisterPlugin({
     name: 'PluginA',

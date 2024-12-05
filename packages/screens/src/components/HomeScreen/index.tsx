@@ -3,7 +3,6 @@
 import { Separator } from "@repo/ui";
 import Link from "next/link";
 import Hero from "./Hero";
-import { MixedSortingDemo } from "../Mixed";
 import { PluginArea } from "../plugin-area";
 const HomeScreen = () => {
   return (
@@ -20,7 +19,6 @@ const HomeScreen = () => {
         </Link>
       </div>
       <PluginArea />
-      <MixedSortingDemo />
     </section>
   );
 };

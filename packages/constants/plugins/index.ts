@@ -25,6 +25,7 @@ export const PLUGINS: TPluginData[] = [
     plugin: PluginB,
     status: "active",
   },
+
   {
     id: "Plug Feature",
     name: "Plug Feature",

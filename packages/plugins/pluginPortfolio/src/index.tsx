@@ -1,7 +1,7 @@
 import { useGlobalHook, useRegisterPlugin } from '@repo/plugin-sdk';
 import React from 'react';
 import Portfolio from './components/Portfolio';
-import { TUserInfo } from './types';
+import { TUserInfo } from '@repo/store/types';
 
 export const PluginPortfolio = () => {
   const { add_hook, do_action } = useGlobalHook();
