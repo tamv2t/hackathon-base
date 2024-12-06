@@ -17,10 +17,5 @@
     "node": ">=18"
   },
   "name": "with-tailwind",
-  "packageManager": "pnpm@7.16.1",
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "packages/plugins/*"
-  ]
+  "packageManager": "pnpm@9.12.0"
 }

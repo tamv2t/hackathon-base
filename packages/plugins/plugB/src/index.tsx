@@ -53,7 +53,10 @@ export const PluginB = () => {
   });
   return (
     //Evering will render here.
-    <div className="border rounded-lg p-4 border-dividerColorDefault">
+    <div
+      className="border rounded-lg p-4 border-dividerColorDefault"
+      id="#PluginB"
+    >
       This is plugin B{renderCard()}
       {do_action('subtitle')}
     </div>

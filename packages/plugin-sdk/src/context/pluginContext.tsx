@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { HookContextType, useGlobalHook } from './base';
+import { nestedStructure } from '../utils/nestedStructure';
 export type Plugin = {
   name: string;
   author: string;
@@ -35,6 +36,18 @@ export const PluginContextProvider = ({
       const updatedPlugins = [...prevPlugins, params];
       return updatedPlugins;
     });
+
+    if (params.name) {
+      console.log(params.name);
+      const targetElement = document.getElementById(`#${params.name}`);
+
+      if (!targetElement) {
+        console.warn(`No found element with id: ${params.name}`);
+        return;
+      }
+      const buildElement = nestedStructure.buildNestedStructure(targetElement);
+      nestedStructure.assignIds(buildElement, params.name);
+    }
     if (params.bootstrap) {
       params.bootstrap(_ctx); // Boot plugin with context
     }
