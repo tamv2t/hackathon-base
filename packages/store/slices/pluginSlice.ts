@@ -1,14 +1,14 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { TPluginData } from "../types";
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+import { TPluginData } from '../types'
 
 export interface PluginStore {
-  plugins: TPluginData[];
-  addPlugin: (plugin: TPluginData) => void;
-  removePlugin: (name: string) => void;
-  updatePlugin: (name: string, data: Partial<TPluginData>) => void;
-  backupPlugins: (plugins: TPluginData[]) => void;
-  togglePluginStatus: (name: string) => void;
+  plugins: TPluginData[]
+  addPlugin: (plugin: TPluginData) => void
+  removePlugin: (name: string) => void
+  updatePlugin: (name: string, data: Partial<TPluginData>) => void
+  backupPlugins: (plugins: TPluginData[]) => void
+  togglePluginStatus: (name: string) => void
 }
 
 export const usePluginStore = create<PluginStore>()(
@@ -16,8 +16,7 @@ export const usePluginStore = create<PluginStore>()(
     (set) => ({
       plugins: [],
 
-      addPlugin: (plugin: TPluginData) =>
-        set((state) => ({ plugins: [...state.plugins, plugin] })),
+      addPlugin: (plugin: TPluginData) => set((state) => ({ plugins: [...state.plugins, plugin] })),
 
       removePlugin: (name: string) =>
         set((state) => ({
@@ -26,9 +25,7 @@ export const usePluginStore = create<PluginStore>()(
 
       updatePlugin: (name: string, data: Partial<TPluginData>) =>
         set((state) => ({
-          plugins: state.plugins.map((plugin) =>
-            plugin.name === name ? { ...plugin, ...data } : plugin
-          ),
+          plugins: state.plugins.map((plugin) => (plugin.name === name ? { ...plugin, ...data } : plugin)),
         })),
       backupPlugins: (plugins) => set({ plugins }),
       togglePluginStatus: (name: string) =>
@@ -37,14 +34,14 @@ export const usePluginStore = create<PluginStore>()(
             plugin.name === name
               ? {
                   ...plugin,
-                  status: plugin.status === "active" ? "inactive" : "active",
+                  status: plugin.status === 'active' ? 'inactive' : 'active',
                 }
-              : plugin
+              : plugin,
           ),
         })),
     }),
     {
-      name: "plugin-storage",
-    }
-  )
-);
+      name: 'plugin-storage',
+    },
+  ),
+)

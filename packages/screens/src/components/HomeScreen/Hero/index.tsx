@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 const Hero = () => {
   return (
@@ -18,20 +18,14 @@ const Hero = () => {
         height={234}
       />
       <div className="m-auto px-5 h-60 md:h-full flex flex-col justify-end items-center md:justify-center md:items-start bg-black/5">
-        <Image
-          src="/icons/Coin98TextLogo.svg"
-          className="w-36"
-          alt="logo"
-          width={144}
-          height={144}
-        />
+        <Image src="/icons/Coin98TextLogo.svg" className="w-36" alt="logo" width={144} height={144} />
         <div className="text-[2.8rem] text-white">
           <span className="text-[#E5B842] font-medium">Coin98</span> Snap
         </div>
         <div className="text-white ">Snap Test Dapps</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

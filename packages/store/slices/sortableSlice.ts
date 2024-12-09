@@ -1,10 +1,10 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 export interface SortableState {
-  disabled: boolean;
-  toggleDisabled: () => void;
-  setDisabled: (value: boolean) => void;
+  disabled: boolean
+  toggleDisabled: () => void
+  setDisabled: (value: boolean) => void
 }
 
 export const useSortableStore = create(
@@ -21,7 +21,7 @@ export const useSortableStore = create(
         })),
     }),
     {
-      name: "sortable-storage", // Key in localStorage
-    }
-  )
-);
+      name: 'sortable-storage', // Key in localStorage
+    },
+  ),
+)

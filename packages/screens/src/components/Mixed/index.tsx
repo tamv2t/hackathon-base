@@ -1,22 +1,12 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import { closestCorners } from "@dnd-kit/core";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  Sortable,
-  SortableItem,
-} from "@repo/ui";
-import { dataConfig } from "../../config/data";
+import * as React from 'react'
+import { closestCorners } from '@dnd-kit/core'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, Sortable, SortableItem } from '@repo/ui'
+import { dataConfig } from '../../config/data'
 
 export function MixedSortingDemo() {
-  const [specialTricks, setSpecialTricks] = React.useState(
-    dataConfig.speicalTricks
-  );
+  const [specialTricks, setSpecialTricks] = React.useState(dataConfig.speicalTricks)
 
   return (
     <Card>
@@ -48,5 +38,5 @@ export function MixedSortingDemo() {
         </Sortable>
       </CardContent>
     </Card>
-  );
+  )
 }

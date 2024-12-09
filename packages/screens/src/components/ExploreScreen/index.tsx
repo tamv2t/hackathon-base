@@ -1,7 +1,7 @@
-import Snaps from "./Snaps";
+import Snaps from './Snaps'
 
 const ExploreScreen = () => {
-  return <Snaps />;
-};
+  return <Snaps />
+}
 
-export default ExploreScreen;
+export default ExploreScreen

@@ -1,10 +1,10 @@
-"use client";
-import { PLUGINS, TPluginData } from "@repo/constants";
-import Image from "next/image";
-import React from "react";
-import SnapButton from "./SnapButton";
+'use client'
+import { PLUGINS, TPluginData } from '@repo/constants'
+import Image from 'next/image'
+import React from 'react'
+import SnapButton from './SnapButton'
 interface SnapItemProps {
-  item: TPluginData;
+  item: TPluginData
 }
 export const SnapItem: React.FC<SnapItemProps> = ({ item }) => {
   return (
@@ -14,20 +14,18 @@ export const SnapItem: React.FC<SnapItemProps> = ({ item }) => {
           width={40}
           height={40}
           alt="Snap_IMG"
-          src={item?.image || ""}
+          src={item?.image || ''}
           className="rounded-full object-cover size-10"
         />
         <div className="flex-1">
-          <h3 className="font-semibold line-clamp-1 first-letter:uppercase">
-            {item.name}
-          </h3>
+          <h3 className="font-semibold line-clamp-1 first-letter:uppercase">{item.name}</h3>
           <p className="line-clamp-1 text-xs">{item.description}</p>
         </div>
       </div>
       <SnapButton snap={item} />
     </div>
-  );
-};
+  )
+}
 const Snaps = () => {
   return (
     <div className="pb-6">
@@ -38,7 +36,7 @@ const Snaps = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Snaps;
+export default Snaps

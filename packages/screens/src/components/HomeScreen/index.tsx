@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import { Separator } from "@repo/ui";
-import Link from "next/link";
-import Hero from "./Hero";
-import { PluginArea } from "../plugin-area";
+import { Separator } from '@repo/ui'
+import Link from 'next/link'
+import Hero from './Hero'
+import { PluginArea } from '../plugin-area'
 // Recursive function to build a nested structure representation
 // const buildNestedStructure = (element: HTMLElement): any => {
 //   const node = {
@@ -55,10 +55,7 @@ const HomeScreen = () => {
       <Separator />
       <div className="flex justify-between">
         <h2 className="text-2xl font-bold">Installed</h2>
-        <Link
-          href={"/explore"}
-          className="text-textLink hover:underline hover:decoration-2"
-        >
+        <Link href={'/explore'} className="text-textLink hover:underline hover:decoration-2">
           Explore All Snaps
         </Link>
       </div>
@@ -75,7 +72,7 @@ const HomeScreen = () => {
         <div>TEST check </div>
       </div> */}
     </section>
-  );
-};
+  )
+}
 
-export default HomeScreen;
+export default HomeScreen

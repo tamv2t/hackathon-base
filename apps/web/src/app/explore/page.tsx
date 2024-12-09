@@ -1,8 +1,8 @@
-import { ExploreScreen } from "@repo/screens";
-import React from "react";
+import { ExploreScreen } from '@repo/screens'
+import React from 'react'
 
 const Explore = () => {
-  return <ExploreScreen />;
-};
+  return <ExploreScreen />
+}
 
-export default Explore;
+export default Explore

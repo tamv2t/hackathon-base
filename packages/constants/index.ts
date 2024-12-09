@@ -1,2 +1,2 @@
-export { PLUGINS } from "./plugins";
-export { type TPluginData } from "./types";
+export { PLUGINS } from './plugins'
+export { type TPluginData } from './types'
