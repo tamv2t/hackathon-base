@@ -7,9 +7,9 @@ const ControlPanel = () => {
       <span className="text-xl font-medium">Swap</span>
       <div className="flex items-center gap-2 md:gap-4">
         <div className="flex items-center gap-2">
-          <Icon name="app_dashboard" className={`icon-cursor `} />
-          <Icon name="app_setting" className={`icon-cursor `} />
-          <Icon name="app_history" className={`icon-cursor `} />
+          <Icon name="app_dashboard" className={'icon-cursor '} />
+          <Icon name="app_setting" className={'icon-cursor '} />
+          <Icon name="app_history" className={'icon-cursor '} />
         </div>
       </div>
     </div>

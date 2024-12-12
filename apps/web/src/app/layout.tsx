@@ -1,8 +1,8 @@
 import '@repo/ui/globals.css'
 import type { Metadata } from 'next'
 import { Bricolage_Grotesque } from 'next/font/google'
-import Provider from '../context/Provider'
 import Layout from '../layouts'
+import Provider from '../provider'
 const bricolage_grotesque = Bricolage_Grotesque({
   subsets: ['latin'],
   weight: ['200', '300', '400', '500', '600', '700', '800'],

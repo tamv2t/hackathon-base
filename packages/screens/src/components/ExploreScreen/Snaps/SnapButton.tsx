@@ -4,6 +4,7 @@ import { Button } from '@repo/ui'
 import { usePluginStore } from '@repo/store'
 import { toast } from 'sonner'
 import { useMemo } from 'react'
+import React from 'react'
 import { usePluginHelper } from '@repo/plugin-sdk'
 const SnapButton = ({ snap, ...props }: { snap: TPluginData }) => {
   const { plugins, addPlugin, removePlugin } = usePluginStore()

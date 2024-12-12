@@ -2,6 +2,7 @@ import { WalletProvider } from '@coin98t/wallet-adapter-react'
 import { WalletModalProvider } from '@coin98t/wallet-adapter-react-ui'
 import { FC, ReactNode } from 'react'
 import { chainsSupported, defaultChains, DynamicWalletModalC98, walletsSupported } from './constants'
+import React from 'react'
 
 interface AdapterProviderProps {
   children: ReactNode
