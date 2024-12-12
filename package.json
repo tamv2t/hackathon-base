@@ -29,8 +29,6 @@
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
     "@repo/eslint-config": "workspace:*",
-    "eslint-plugin-address": "^0.0.2",
-    "eslint-plugin-lodash": "^7.4.0",
     "husky": "^9.1.7",
     "stylelint": "^14.5.3",
     "stylelint-config-prettier": "^9.0.3",

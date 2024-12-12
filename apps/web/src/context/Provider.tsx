@@ -1,12 +1,15 @@
 'use client'
 import { HookProvider, PluginContextProvider } from '@repo/plugin-sdk'
 import React, { FC, PropsWithChildren } from 'react'
+import { AdapterProvider } from '@repo/screens'
 
 const Provider: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <HookProvider>
-      <PluginContextProvider>{children}</PluginContextProvider>
-    </HookProvider>
+    <AdapterProvider>
+      <HookProvider>
+        <PluginContextProvider>{children}</PluginContextProvider>
+      </HookProvider>
+    </AdapterProvider>
   )
 }
 

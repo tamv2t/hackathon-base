@@ -1,7 +1,13 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "webextensions": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
   "extends": ["plugin:react/recommended"],
   "globals": {
@@ -16,11 +22,14 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "quotes": ["error", "single"],
-    "space-before-function-paren": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    "space-before-function-paren": "off",
+    "react/jsx-runtime": "off"
   }
 }
