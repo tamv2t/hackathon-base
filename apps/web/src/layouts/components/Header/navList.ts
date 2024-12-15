@@ -1,1 +1,1 @@
-export const navList = [{ title: 'Multisig', href: '/multisig/create' }]
+export const navList = [{ title: 'Multisig', href: '/multisig' }]

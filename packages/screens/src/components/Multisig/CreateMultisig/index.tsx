@@ -4,14 +4,45 @@ import Image from 'next/image'
 import { Button, Icon, Input } from '@repo/ui'
 import SelectChain from './SelectChain'
 import FormMultisig from './FormMultisig'
+import { useWallet } from '@coin98t/wallet-adapter-react'
+import { factoryContract } from '../../../utils/factory.contract'
+import { toast } from 'sonner'
 
 const CreateMultisigScreen = () => {
-  const [isAppoved, setIsApproved] = useState<boolean>(false)
-  const handleApprove = () => {
-    setIsApproved(true)
+  const [step, setStep] = useState<number>(0)
+  const [nonce, setNonce] = useState('')
+  const { address } = useWallet()
+  const onInitMultisig = () => {
+    setStep(1)
   }
-  if (isAppoved) {
-    return <FormMultisig />
+  const handleMultisigCreation = async () => {
+    try {
+      const multisigPromise = factoryContract.createMultisig(address!)
+
+      toast.promise(multisigPromise, {
+        loading: 'Creating multisig...',
+        success: () => {
+          setStep(2)
+          return 'Multisig created successfully!'
+        },
+        error: 'Multisig creation failed',
+      })
+
+      const { nonce } = await multisigPromise
+      setNonce(nonce)
+    } catch (error) {
+      console.error('Error creating multisig:', error)
+    }
+  }
+  if (step === 1) {
+    return (
+      <div className="mx-auto all-center">
+        <Button onClick={handleMultisigCreation}>Create multisig</Button>
+      </div>
+    )
+  }
+  if (step === 2) {
+    return <FormMultisig nonce={nonce} />
   }
   return (
     <div className="h-screen all-cente w-full">
@@ -32,7 +63,7 @@ const CreateMultisigScreen = () => {
           <SelectChain />
           <Input placeholder="Type Multisig wallet" className="border border-backgroundInput" />
         </div>
-        <Button onClick={handleApprove}>Continute</Button>
+        <Button onClick={onInitMultisig}>Continute</Button>
       </div>
     </div>
   )

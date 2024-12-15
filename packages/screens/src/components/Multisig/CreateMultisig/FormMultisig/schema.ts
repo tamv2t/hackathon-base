@@ -4,8 +4,8 @@ export const createPowersSchema = () =>
   z.object({
     powers: z.array(
       z.object({
-        addressOwner: z.string().min(1, 'Wallet address is required'),
-        vote: z.string().min(1, 'Required'),
+        owner: z.string().min(1, 'Wallet address is required'),
+        votePower: z.string().min(1, 'Required'),
       }),
     ),
   })

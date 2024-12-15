@@ -22,7 +22,6 @@ const assignIds = (node: any, parentId: string = '') => {
   // Build a nested structure from the DOM
   const currentId = parentId ? `${parentId}_${children.length}` : 'pluginTest';
   element.id = `#${currentId}`;
-  console.log(currentId);
 
   // Assign unique IDs to all elements in the nested structure
   children.forEach((childNode: any, index: number) => {

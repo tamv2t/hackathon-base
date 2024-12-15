@@ -4,8 +4,7 @@
     "baseUrl": ".",
     "moduleResolution": "node",
     "paths": {
-      "@repo/screens/*": ["./src/*"],
-      "react": ["./node_modules/@types/react"]
+      "@repo/screens/*": ["./src/*"]
     }
   },
   "include": ["src"],

@@ -1,2 +1,2 @@
-const FACTORY_ADDRESS = '0xF54db282Bd506C350cD000F2aa27e96b7569eE86'
-export const powerData = [{ addressOwner: FACTORY_ADDRESS, vote: '2' }]
+const DANGVU_ADDRESS = '0xFBE4e20488ca41F59a4f614b3F05799840686709'
+export const powerData = [{ addressOwner: DANGVU_ADDRESS, votePower: '2' }]

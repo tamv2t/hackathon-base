@@ -1,37 +1,90 @@
 'use client'
-import React from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormField, Form, FormItem, FormControl, Input, FormMessage, Button, Separator } from '@repo/ui'
 import { createPowersSchema, CreatePowersSchemaType } from './schema'
-import { powerData } from './powerData'
 import { toast } from 'sonner'
+import { factoryContract } from '../../../../utils/factory.contract'
+import { useWallet } from '@coin98t/wallet-adapter-react'
+import { multisigContract } from '../../../../utils/multisig.contract'
+interface IFormMultisigProps {
+  nonce: string
+}
+interface PowerInputInfo {
+  owner: string
+  votePower: string
+  isRequired: boolean
+}
+const FormMultisig: React.FC<IFormMultisigProps> = ({ nonce }) => {
+  const { address } = useWallet()
 
-const FormMultisig = () => {
   const form = useForm<CreatePowersSchemaType>({
     resolver: zodResolver(createPowersSchema()),
     defaultValues: {
-      powers: powerData,
+      powers: [{ owner: address!, votePower: '2' }],
     },
   })
   const { fields, append } = useFieldArray({
     control: form.control,
     name: 'powers',
   })
-  function onSubmit(values: CreatePowersSchemaType) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-    toast.success('Submit successed!')
+  const handleSetupMultisig = async (powerInputInfors: PowerInputInfo[]) => {
+    if (!address) {
+      return
+    }
+    const multisigAddress = await factoryContract.getMultisigAddress(nonce, address)
+    const transaction = await multisigContract.setupMultisig({
+      ownerInfoInputs: powerInputInfors,
+      multisigAddress: multisigAddress,
+      userAddress: address,
+    })
+    return transaction
+  }
+  async function onSubmit(formValues: CreatePowersSchemaType) {
+    const ownerInputs: PowerInputInfo[] = formValues.powers.map((owner) => ({
+      ...owner,
+      isRequired: true,
+    }))
+
+    const setupMultisigPromise = handleSetupMultisig(ownerInputs)
+
+    toast.promise(setupMultisigPromise, {
+      loading: 'Setting up the Multisig contract...',
+      success: (result) => {
+        const txLink = `https://www.vicscan.xyz/tx/${result}`
+
+        return (
+          <span>
+            Multisig setup completed!{' '}
+            <a
+              href={txLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'blue', textDecoration: 'underline' }}
+            >
+              View Transaction
+            </a>
+          </span>
+        )
+      },
+      error: 'Failed to set up Multisig contract!',
+    })
+
+    try {
+      const setupResult = await setupMultisigPromise
+      console.log('Multisig Setup Result:', setupResult)
+    } catch (error) {
+      console.error('Error during Multisig setup:', error)
+    }
   }
   const addPower = () => {
     const currentValues = form.getValues('powers')
 
     // Check if all current fields are valid
-    const isValid = currentValues.every((item) => item.addressOwner.trim() !== '' && item.vote.trim() !== '')
+    const isValid = currentValues.every((item) => item.owner.trim() !== '' && item.votePower.trim() !== '')
 
     if (isValid) {
-      append({ addressOwner: '', vote: '' })
+      append({ owner: '', votePower: '' })
     } else {
       form.trigger() // Trigger validation to highlight errors
     }
@@ -52,7 +105,7 @@ const FormMultisig = () => {
               {/* Address Owner Field */}
               <FormField
                 control={form.control}
-                name={`powers.${index}.addressOwner`}
+                name={`powers.${index}.owner`}
                 render={({ field }) => (
                   <FormItem className="flex-1 bg-backgroundInput py-2 rounded-lg">
                     <FormControl>
@@ -65,7 +118,7 @@ const FormMultisig = () => {
               {/* Vote Field */}
               <FormField
                 control={form.control}
-                name={`powers.${index}.vote`}
+                name={`powers.${index}.votePower`}
                 render={({ field }) => (
                   <FormItem className="w-20 bg-backgroundInput rounded-lg">
                     <FormControl>
@@ -81,7 +134,9 @@ const FormMultisig = () => {
             <Button type="button" onClick={addPower}>
               Add
             </Button>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={!address}>
+              Submit
+            </Button>
           </div>
         </form>
       </Form>

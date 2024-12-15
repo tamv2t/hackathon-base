@@ -21,6 +21,8 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "quotes": ["error", "single"],
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
   }
 }
